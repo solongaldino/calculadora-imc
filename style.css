@@ -1,0 +1,18 @@
+body {
+  background-color: #dab0d6;
+  padding: 0px;
+  margin: 0px;
+}
+
+.form-container {
+  padding: 60px;
+  max-width: 600px;
+}
+
+.resultado-container {
+  padding: 20px;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
