@@ -2,7 +2,6 @@ let form = document.getElementById("meu-formulario");
 const localResultado = document.getElementById("local-resultado");
 const resultadoContainer = document.getElementById("resultado-container");
 const botaoNovoCalculo = document.getElementById("novo-calculo");
-
 const alturaInput = document.getElementById("altura");
 const pesoInput = document.getElementById("peso");
 
