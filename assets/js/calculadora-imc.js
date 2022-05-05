@@ -4,19 +4,27 @@ const resultadoContainer = document.getElementById("resultado-container");
 const botaoNovoCalculo = document.getElementById("novo-calculo");
 const alturaInput = document.getElementById("altura");
 const pesoInput = document.getElementById("peso");
+const menssagemErrorAltura = document.getElementById("menssagem-error-altura");
+const menssagemErrorPeso = document.getElementById("menssagem-error-peso");
 
 alturaInput.addEventListener("keyup", () => {
   alturaInput.value = maskAltura(alturaInput.value);
+  eValidaAltura(alturaInput.value) ? removeErrorAltura() : lancarErrorAltura();
 });
 
 pesoInput.addEventListener("keyup", () => {
   pesoInput.value = maskPeso(pesoInput.value);
+  eValidoPeso(pesoInput.value) ? removeErrorPeso() : lancarErrorPeso();
 });
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const altura = Number(form.elements.altura.value.replace(",", "."));
   const peso = Number(form.elements.peso.value.replace(",", "."));
+
+  if (!validaFormulario(altura, peso)) {
+    return false;
+  }
 
   const imc = calulaImc(altura, peso);
 
@@ -34,6 +42,46 @@ botaoNovoCalculo.addEventListener("click", () => {
   novoCalculo();
 });
 
+function validaFormulario(altura, peso) {
+  if (!eValidaAltura(altura)) {
+    lancarErrorAltura();
+    return false;
+  }
+
+  if (!eValidoPeso(peso)) {
+    lancarErrorPeso();
+    return false;
+  }
+
+  return true;
+}
+
+function eValidaAltura(altura) {
+  if (altura < 0 || altura === 0) return false;
+  return true;
+}
+
+function lancarErrorAltura() {
+  menssagemErrorAltura.style.display = "block";
+}
+
+function removeErrorAltura() {
+  menssagemErrorAltura.style.display = "none";
+}
+
+function eValidoPeso(peso) {
+  if (peso < 0 || peso === 0) return false;
+  return true;
+}
+
+function lancarErrorPeso() {
+  menssagemErrorPeso.style.display = "block";
+}
+
+function removeErrorPeso() {
+  menssagemErrorPeso.style.display = "none";
+}
+
 function calulaImc(altura, peso) {
   return peso / (altura * altura);
 }
@@ -48,11 +96,11 @@ function classificaImc(resultado) {
   } else if (resultado >= 25 && resultado <= 29.9) {
     textoResultado = "Sobrepeso";
   } else if (resultado >= 30 && resultado <= 34.9) {
-    textoResultado = "Obesidade (Grau I)";
+    textoResultado = "Obesidade Grau I";
   } else if (resultado >= 35 && resultado <= 39.9) {
-    textoResultado = "Obesidade Severa (Grau II)";
+    textoResultado = "Obesidade Severa Grau II";
   } else if (resultado >= 40) {
-    textoResultado = "Obesidade Mórbida (Grau III)";
+    textoResultado = "Obesidade Mórbida Grau III";
   } else {
     textoResultado = "Error na calculadora";
   }
@@ -100,4 +148,10 @@ function maskAltura(value) {
   return v;
 }
 
-novoCalculo();
+function inicializa() {
+  novoCalculo();
+  removeErrorAltura();
+  removeErrorPeso();
+}
+
+inicializa();

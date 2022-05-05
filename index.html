@@ -15,11 +15,11 @@
   </head>
   <body>
     <div class="form-container">
-      <h1>Calculadora IMC</h1>
-      <div>
+      <h2 class="text-center mb-3">Calculadora IMC</h2>
+      <div class="container">
         <form id="meu-formulario">
           <div class="mb-3">
-            <label for="altura" class="form-label">Altura</label>
+            <label for="altura" class="form-label">Altura(m)</label>
             <input
               type="text"
               class="form-control"
@@ -27,9 +27,12 @@
               aria-describedby="altura(metros)"
               placeholder="Exemplo: 1,75"
             />
+            <span id="menssagem-error-altura" class="text-danger"
+              >* Altura invalido</span
+            >
           </div>
           <div class="mb-3">
-            <label for="peso" class="form-label">Peso</label>
+            <label for="peso" class="form-label">Peso(kg)</label>
             <input
               type="text"
               class="form-control"
@@ -37,14 +40,19 @@
               aria-describedby="peso(quilograma)"
               placeholder="Exemplo: 80,650"
             />
+            <span id="menssagem-error-peso" class="text-danger"
+              >* Peso invalido</span
+            >
           </div>
-          <button type="submit" class="btn btn-primary">Calcular</button>
+          <button id="botao-calcular" type="submit" class="btn btn-primary">
+            Calcular
+          </button>
         </form>
         <br />
         <br />
-        <div id="resultado-container" class="resultado-container">
-          <h4>Resultado:</h4>
-          <p id="local-resultado"></p>
+        <div id="resultado-container" class="resultado-container text-center">
+          <h4 class="font-weight-bold">Resultado:</h4>
+          <p class="m-4" id="local-resultado"></p>
           <button id="novo-calculo" class="btn btn-primary">
             Novo calculo
           </button>
